@@ -2,10 +2,12 @@ package com.unibamberg.ddt.inventoryqrscanner;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -42,7 +44,9 @@ public class MainActivity extends AppCompatActivity {
             String scannedData = result.getContents();
 
             if (scannedData != null) {
-                new SendRequest().execute(scannedData);
+                SendRequest sendRequest = new SendRequest();
+                AsyncTask<String, Void, String> response = sendRequest.execute(scannedData);
+                Toast.makeText(this, response.toString(), Toast.LENGTH_LONG).show();
 
             } else {
 
