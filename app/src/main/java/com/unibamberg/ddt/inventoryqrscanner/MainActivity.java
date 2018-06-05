@@ -45,8 +45,10 @@ public class MainActivity extends AppCompatActivity {
 
             if (scannedData != null) {
                 SendRequest sendRequest = new SendRequest();
-                AsyncTask<String, Void, String> response = sendRequest.execute(scannedData);
-                Toast.makeText(this, response.toString(), Toast.LENGTH_LONG).show();
+                AsyncTask<String, Void, String> task = sendRequest.execute(scannedData);
+                // Toast.makeText(this, task.getStatus().toString(), Toast.LENGTH_LONG).show();
+
+                // TODO: on post result, take response from script
 
             } else {
 

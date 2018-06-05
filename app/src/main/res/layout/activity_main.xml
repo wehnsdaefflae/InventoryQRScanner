@@ -40,11 +40,10 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
-        android:editable="false"
         android:ems="10"
         android:enabled="true"
         android:inputType="textPersonName"
-        android:text="<empty>"
+        android:text="empty"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scan_btn"
         tools:layout_editor_absoluteX="84dp" />
