@@ -21,9 +21,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         final Activity activity = this;
-        Button scanBtn = findViewById(R.id.scan_btn);
-
-        scanBtn.setOnClickListener(new View.OnClickListener() {
+        TextView textView = findViewById(R.id.text_view);
+        textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 IntentIntegrator integrator = new IntentIntegrator(activity);
