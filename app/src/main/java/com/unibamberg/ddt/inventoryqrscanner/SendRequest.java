@@ -1,7 +1,10 @@
 package com.unibamberg.ddt.inventoryqrscanner;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONObject;
 
@@ -10,6 +13,7 @@ import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -18,6 +22,12 @@ import java.util.Iterator;
 import javax.net.ssl.HttpsURLConnection;
 
 public class SendRequest extends AsyncTask<String, Void, String> {
+    private WeakReference<TextView> textViewWeakReference;
+
+    SendRequest(TextView textView) {
+        this.textViewWeakReference = new WeakReference<>(textView);
+    }
+
     @Override
     protected void onPreExecute(){}
 
@@ -79,6 +89,8 @@ public class SendRequest extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String result) {
+        TextView textView = this.textViewWeakReference.get();
+        textView.append("\n" + result);
     }
 
     private String getPostDataString(JSONObject params) throws Exception {
@@ -87,7 +99,7 @@ public class SendRequest extends AsyncTask<String, Void, String> {
 
         Iterator<String> itr = params.keys();
 
-        while(itr.hasNext()){
+        while(itr.hasNext()) {
             String key= itr.next();
             Object value = params.get(key);
 

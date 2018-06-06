@@ -2,12 +2,12 @@ package com.unibamberg.ddt.inventoryqrscanner;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -42,16 +42,10 @@ public class MainActivity extends AppCompatActivity {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (result != null) {
             String scannedData = result.getContents();
-
             if (scannedData != null) {
-                SendRequest sendRequest = new SendRequest();
-                AsyncTask<String, Void, String> task = sendRequest.execute(scannedData);
-                // Toast.makeText(this, task.getStatus().toString(), Toast.LENGTH_LONG).show();
-
-                // TODO: on post result, take response from script
-
-            } else {
-
+                TextView textView = findViewById(R.id.text_view);
+                SendRequest sendRequest = new SendRequest(textView);
+                sendRequest.execute(scannedData);
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
