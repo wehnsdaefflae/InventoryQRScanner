@@ -36,7 +36,7 @@ public class SendRequest extends AsyncTask<String, Void, String> {
         String returnString;
 
         try {
-            URL url = new URL("https://script.google.com/macros/s/AKfycbwxMET5gAMQ5HdS8OWJok8cT4M9THzAsyieWZdM/exec");
+            URL url = new URL("https://script.google.com/macros/s/AKfycbxgFIv5kFpAJ1Iy1Exz7oDdZVZWsAG8Xbed4BaDVbKflDqhsyKC/exec");
 
             String data = scannedData[0];
             if (!data.startsWith("(uniba-iadk)")) {
